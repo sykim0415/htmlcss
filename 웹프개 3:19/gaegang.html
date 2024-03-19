@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슬픈 대학생</title>
+    <style>
+        body {
+            background-color: #f0f0f0; /* 배경색 */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* 요소를 세로로 배치 */
+            height: 100vh;
+            overflow: hidden;
+            position: relative; /* 상대 위치 설정 */
+        }
+
+        .sad-student {
+            font-size: 100px; /* 이모지 크기 */
+            animation: spin 2s linear infinite; /* 회전 애니메이션 */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .emoji {
+            position: absolute; /* 절대 위치 설정 */
+            animation: fall 2s linear forwards; /* 이모지 이동 애니메이션 */
+        }
+
+        @keyframes fall {
+            0% { top: 50%; transform: translateY(-50%); } /* 슬픈 대학생 위치 */
+            100% { top: 100%; transform: translateY(0); } /* 바닥으로 이동 */
+        }
+
+        .quote {
+            position: absolute;
+            bottom: 100px; /* 이모지와의 간격 조정 */
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .border-flowers {
+            position: absolute;
+            z-index: -1; /* 배경 위에 오도록 설정 */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .border-flowers img {
+            position: absolute;
+            pointer-events: none; /* 마우스 이벤트 무시 */
+            opacity: 0.5; /* 투명도 조정 */
+        }
+    </style>
+</head>
+<body>
+    <div class="border-flowers">
+        <!-- 벚꽃 이모지를 반복하여 배치 -->
+        <img src="https://emojicdn.elk.sh/🌸" style="top: -50px; left: -50px;">
+        <img src="https://emojicdn.elk.sh/🌸" style="top: -50px; right: -50px;">
+        <img src="https://emojicdn.elk.sh/🌸" style="bottom: -50px; left: -50px;">
+        <img src="https://emojicdn.elk.sh/🌸" style="bottom: -50px; right: -50px;">
+    </div>
+
+    <div class="sad-student">😢</div>
+    <div class="quote">벚꽃이 피었다는 건 중간고사 시즌이 되었다는 것..</div>
+
+    <script>
+        const emojis = ['💧', '💢', '❤️‍🔥', '☠️']; // 이모지 배열
+        const container = document.body; // 바디 선택
+
+        function createEmoji() {
+            const emoji = document.createElement('span'); // span 요소 생성
+            emoji.classList.add('emoji'); // 클래스 추가
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)]; // 랜덤 이모지 선택
+            
+            // 슬픈 대학생 위치
+            const sadStudent = document.querySelector('.sad-student');
+            const sadStudentRect = sadStudent.getBoundingClientRect();
+            const randomLeft = sadStudentRect.left + (sadStudentRect.width / 2) - 25; // 중앙으로부터 랜덤한 위치
+
+            // 랜덤 위치 설정
+            emoji.style.left = randomLeft + 'px';
+
+            container.appendChild(emoji); // 바디에 추가
+
+            setTimeout(() => {
+                emoji.remove(); // 일정 시간이 지나면 이모지 제거
+            }, 2000); // 2초 후 제거
+        }
+
+        setInterval(createEmoji, 500); // 0.5초마다 이모지 생성
+    </script>
+</body>
+</html>
