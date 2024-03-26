@@ -2,13 +2,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>간단한 계산기</title>
+<title>계산기도 만들어보자</title>
 <style>
   input[type="button"] {
-    width: 70px; /* 버튼의 너비를 조정합니다. */
-    height: 70px; /* 버튼의 높이를 조정합니다. */
+    width: 70px;
+    height: 70px;
     font-size: 20px;
     margin: 5px;
+    background-color: orange; /* 버튼의 배경색을 주황색으로 지정합니다. */
+    border: none; /* 테두리를 제거합니다. */
+    border-radius: 5px; /* 버튼의 모서리를 둥글게 만듭니다. */
+    cursor: pointer; /* 마우스를 올리면 커서를 포인터로 변경합니다. */
+  }
+
+  input[type="button"]:hover {
+    background-color: darkorange; /* 마우스를 올렸을 때 더 진한 주황색으로 변경합니다. */
   }
 </style>
 </head>
